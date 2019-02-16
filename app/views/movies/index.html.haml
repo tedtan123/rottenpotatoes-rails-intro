@@ -4,7 +4,8 @@
 %table.table-striped.col-md-5
   %thead
     %tr
-      %th Movie Title
+      %th = link_to "Movie Title", movie_path(@list.id, sort_by: 'title'), class: 'btn btn-secondary btn-sm btn-space'
+    <button class="btn btn-sm btn-space btn-secondary" id="title_header">Sort By Rating</button>
       %th Rating
       %th Release Date
       %th More Info
