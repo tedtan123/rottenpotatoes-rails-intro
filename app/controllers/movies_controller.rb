@@ -45,15 +45,5 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-# Code below Feb 16
-  def order_list(sort_by)
-    if sort_by =='title'
-      self.Movie.order(title: :asc)
-    elsif sort_by == 'release_date'
-      self.Movie.order(release_date: :asc)
-    else
-      self.Movie.order(created_at: :asc)
-    end
-  end
-# Code above Feb 16      
+    
 end
