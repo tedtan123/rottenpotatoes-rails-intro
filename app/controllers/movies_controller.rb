@@ -12,16 +12,18 @@ class MoviesController < ApplicationController
 
   def index
     #@movies = Movie.all
+    
+    @all_ratings = Movie.with_ratings
+    
     # Code below Feb 16
     @sort_column = params[:sort_by]
-    @movies = Movie.order(@sort_column)
-    
+    #@movies = Movie.order(@sort_column).where(rating: @ratings)
+    @movies = Movie.order(@sort_column).with_ratings(rating)
     if @sort_column == 'title'
       @title_header = 'hilite'
     elsif @sort_column == 'release_date'
       @release_date_header = 'hilite'
     end
-      
     # Code above Feb 16
   end
 
