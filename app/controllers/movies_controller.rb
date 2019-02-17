@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     # Code below Feb 16
     @sort_column = params[:sort_by]
     #@movies = Movie.order(@sort_column).where(rating: @ratings)
-    @movies = Movie.order(@sort_column).with_ratings(rating)
+    @movies = Movie.order(@sort_column).with_ratings
     if @sort_column == 'title'
       @title_header = 'hilite'
     elsif @sort_column == 'release_date'
