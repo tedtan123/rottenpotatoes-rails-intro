@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     # Code below Feb 16
-    @list.movies.order_list(params[:sort_by])
+    @list = @movies.order_list(params[:sort_by])
     # Code above Feb 16
   end
 
@@ -48,11 +48,11 @@ class MoviesController < ApplicationController
 # Code below Feb 16
   def order_list(sort_by)
     if sort_by =='title'
-      self.movies.order(title: :asc)
+      self.Movie.order(title: :asc)
     elsif sort_by == 'release_date'
-      self.movies.order(release_date: :asc)
+      self.Movie.order(release_date: :asc)
     else
-      self.movies.order(created_at: :asc)
+      self.Movie.order(created_at: :asc)
     end
   end
 # Code above Feb 16      
