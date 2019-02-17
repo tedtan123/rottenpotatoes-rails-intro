@@ -5,8 +5,8 @@
   %thead
     %tr
      -# Code below Feb 16
-      <%th= link_to "Movie Title", movies_path(@list.id, sort_by: 'title'), class: 'btn btn-secondary btn-sm btn-space'>
-    <button class="btn btn-sm btn-space btn-secondary" id="title_header">Sort By Rating</button>
+      %th{:class=>("hilite" if @sort_column == "title")} = link_to "Movie Title", movies_path(:sort_by=> 'title'), :id=>"title_header"
+    
      -# Code above Feb 16
       %th Rating
       %th Release Date
