@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     # Code below Feb 16
-    @list = @movies.order_list(params[:sort_by])
+    @list = Movie.order_list(params[:sort_by])
     # Code above Feb 16
   end
 
