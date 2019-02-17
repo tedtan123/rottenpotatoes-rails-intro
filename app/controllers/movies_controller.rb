@@ -14,6 +14,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     # Code below Feb 16
     @list.movies.order_list(params[:sort_by])
+    # Code above Feb 16
   end
 
   def new
@@ -54,5 +55,5 @@ class MoviesController < ApplicationController
       self.movies.order(created_at: :asc)
     end
   end
-      
+# Code above Feb 16      
 end
