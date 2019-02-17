@@ -15,6 +15,12 @@ class MoviesController < ApplicationController
     # Code below Feb 16
     @movies = Movie.order(params[:sort_by])
     @sort_column = params[:sort_by]
+    if @sort_column == 'title'
+      @title_header = 'hilite'
+    elsif @sort_column == 'release_date'
+      @release_date_header = 'hilite'
+    end
+      
     # Code above Feb 16
   end
 
