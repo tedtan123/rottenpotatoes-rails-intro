@@ -5,7 +5,8 @@
   %thead
     %tr
       // Code below Feb 16
-      %th{:class=>("hilite" if @sort_column =="title")}= link_to 'Movie Title', movies_path(:sort_by=>'title'), :id=>"title_header"
+      %th{:class=>("hilite" )}= link_to 'Movie Title', movies_path(:sort_by=>'title'), :id=>"title_header"
+      //if @sort_column =="title"
       //%th= link_to 'Movie Title', movies_path(sort_by: 'title'), id="title_header",class =("hilite" if @sort_column == "title")
       //%th Movie title
       // Code above Feb 16
