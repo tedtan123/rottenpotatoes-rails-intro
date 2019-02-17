@@ -13,7 +13,7 @@
       //%th Movie title
       // Code above Feb 16
       %th Rating
-      %th Release Date
+       %th{class: @release_date_header}= link_to 'Release Date', movies_path(:sort_by => 'release_date'), id: 'release_date_header'
       %th More Info
   %tbody
     - @movies.each do |movie|
