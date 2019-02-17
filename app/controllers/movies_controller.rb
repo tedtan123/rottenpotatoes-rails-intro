@@ -12,6 +12,8 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    # Code below Feb 16
+    @list.movies.order_list(params[:sort_by])
   end
 
   def new
@@ -42,4 +44,15 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+# Code below Feb 16
+  def order_list(sort_by)
+    if sort_by =='title'
+      self.movies.order(title: :asc)
+    elsif sort_by == 'release_date'
+      self.movies.order(release_date: :asc)
+    else
+      self.movies.order(created_at: :asc)
+    end
+  end
+      
 end
