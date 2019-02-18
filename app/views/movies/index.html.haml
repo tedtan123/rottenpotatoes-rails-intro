@@ -11,7 +11,6 @@
   %thead
     %tr
       // Code below Feb 16
-     
       //%th{:class=>("hilite" if @sort_column =="title")}= link_to 'Movie Title', movies_path(:sort_by=>'title'), :id=>"title_header"
       %th{class: @title_header}= link_to 'Movie Title', movies_path(:sort_by => 'title'), id: 'title_header'
       //{class: @classHilite["title"]}
