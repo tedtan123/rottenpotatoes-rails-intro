@@ -12,9 +12,13 @@ class MoviesController < ApplicationController
 
   def index
     #@movies = Movie.all
+    
+    
+    #code below part 2
     @all_ratings = Movie.allRatings
     @ratings = params[:ratings]
-    # Code below Feb 16
+    #code above part 2
+    
     @sort_column = params[:sort_by]
     #@movies = Movie.order(@sort_column).with_ratings
     if @sort_column == 'title'
@@ -22,10 +26,29 @@ class MoviesController < ApplicationController
     elsif @sort_column == 'release_date'
       @release_date_header = 'hilite'
     end
-    # Code above Feb 16
+    
+    #code below part 3
+    if session[:ratings].nil?
+      session[:ratings] = @all_ratings
+    elsif session[:sort_by].nil?
+      session[:sort_by] = params[:sort_by]
+    end
+    
+    if params[:sort_by]
+      session[:sort_by] = params[:sort_by]
+    elsif params[:ratings]
+      session[:ratings] = params[:ratings].keys
+    elsif params[:sort_by].nil? or params[:ratings].nil?
+      flash.keep
+      redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
+    end
+    #code above part 3
+    
+    #code below part 2
     @ratings ||= Hash[@all_ratings.map {|x| [x,1]}]
-    #@movies = Movie.order(@sort_column).where(rating: @ratings.keys)
-    @movies = Movie.order(@sort_column).with_ratings
+    #code above part 2
+    @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
+    
   end
 
   def new
