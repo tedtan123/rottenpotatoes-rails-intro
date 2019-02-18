@@ -11,46 +11,51 @@ class MoviesController < ApplicationController
   end
 
   def index
-    #@movies = Movie.all
     
-    
+    @movies = Movie.all
     #code below part 2
-    @all_ratings = Movie.allRatings
-    @ratings = params[:ratings]
+    # @all_ratings = Movie.allRatings
+    # @ratings = params[:ratings]
     #code above part 2
     
     @sort_column = params[:sort_by]
     #@movies = Movie.order(@sort_column).with_ratings
-    if @sort_column == 'title'
-      @title_header = 'hilite'
-    elsif @sort_column == 'release_date'
-      @release_date_header = 'hilite'
-    end
+    # if @sort_column == 'title'
+    #   @title_header = 'hilite'
+    # elsif @sort_column == 'release_date'
+    #   @release_date_header = 'hilite'
+    # end
     
-    #code below part 3
-    if session[:ratings].nil?
-      session[:ratings] = @all_ratings
-    elsif session[:sort_by].nil?
-      session[:sort_by] = params[:sort_by]
-    end
+    #code below part 3 only 
+    # if session[:ratings].nil?
+    #   session[:ratings] = @all_ratings
+    # elsif session[:sort_by].nil?
+    #   session[:sort_by] = params[:sort_by]
+    # end
     
-    if params[:sort_by]
-      session[:sort_by] = params[:sort_by]
-    elsif params[:ratings]
-      session[:ratings] = params[:ratings].keys
-    elsif params[:sort_by].nil? or params[:ratings].nil?
-      flash.keep
-      redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
-    end
-    @ratings = session[:ratings]
-    @sort_by = session[:sort_by]
-    
-    #code below part 2
+    # if params[:sort_by]
+    #   session[:sort_by] = params[:sort_by]
+    # elsif params[:ratings]
+    #   session[:ratings] = params[:ratings].keys
+    # elsif params[:sort_by].nil? or params[:ratings].nil?
+    #   flash.keep
+    #   redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
+    # end
+    # @ratings = session[:ratings]
+    # @sort_by = session[:sort_by]
+    #code above part 3 only
+    #code below part 2 only
     #@ratings ||= Hash[@all_ratings.map {|x| [x,1]}]
     #@movies = Movie.order(@sort_column).where(rating: @ratings.keys)
-    #code above part 2
-    @movies = Movie.order(@sort_column).where(rating: @ratings)
+    #code above part 2 only
     
+    #code below part 2 & 3
+    #@movies = Movie.order(@sort_column).where(rating: @ratings)
+    #code above part 2 & 3
+    
+    #code below part 1 only
+    @movies = Movie.order(@sort_column)
+    #code above part 1 only
   end
 
   def new

@@ -1,24 +1,21 @@
 -#  This file is app/views/movies/index.html.haml
 %h2 All Movies
-= form_tag movies_path, :method => :get, :id => 'ratings_form' do
-  Include:
-  - @all_ratings.each do |rating|
-    = rating
-    = check_box_tag "ratings[#{rating}]",1,@ratings.include?(rating), :id => 'ratings_#{rating}'
-  = submit_tag 'Refresh', :id => 'ratings_submit'
-  
+//code below for part 2 & 3
+// = form_tag movies_path, :method => :get, :id => 'ratings_form' do
+//   Include:
+//   - @all_ratings.each do |rating|
+//     = rating
+//     = check_box_tag "ratings[#{rating}]",1,@ratings.include?(rating), :id => 'ratings_#{rating}'
+//   = submit_tag 'Refresh', :id => 'ratings_submit'
+//code above for part 2 & 3  
 %table.table-striped.col-md-5
   %thead
     %tr
-      // Code below Feb 16
-      //%th{:class=>("hilite" if @sort_column =="title")}= link_to 'Movie Title', movies_path(:sort_by=>'title'), :id=>"title_header"
-      %th{class: @title_header}= link_to 'Movie Title', movies_path(:sort_by => 'title'), id: 'title_header'
-      //{class: @classHilite["title"]}
-      //%th= link_to 'Movie Title', movies_path(sort_by: 'title'), id="title_header",class =("hilite" if @sort_column == "title")
-      //%th Movie title
-      // Code above Feb 16
+      %th{:class=>("hilite" if @sort_column =="title")}= link_to 'Movie Title', movies_path(:sort_by=>'title'), :id=>"title_header"
+      //%th{class: @title_header}= link_to 'Movie Title', movies_path(:sort_by => 'title'), id: 'title_header'
       %th Rating
-      %th{class: @release_date_header}= link_to 'Release Date', movies_path(:sort_by => 'release_date'), id: 'release_date_header'
+      %th{:class=>("hilite" if @sort_column =="release_date")}= link_to 'Release Date', movies_path(:sort_by=>'release_date'), :id=>"title_header"
+      //%th{class: @release_date_header}= link_to 'Release Date', movies_path(:sort_by => 'release_date'), id: 'release_date_header'
       %th More Info
   %tbody
     - @movies.each do |movie|
