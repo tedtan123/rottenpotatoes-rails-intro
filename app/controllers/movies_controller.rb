@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     #@movies = Movie.all
     
-    @all_ratings = Movie.with_ratings
+    @all_ratings = Movie.allRatings
     
     # Code below Feb 16
     @sort_column = params[:sort_by]
