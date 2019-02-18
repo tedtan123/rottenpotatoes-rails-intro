@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       @release_date_header = 'hilite'
     end
     # Code above Feb 16
-    @ratings_checked = Hash[@ratings.map{|x| [x,1]}]
+    @ratings_checked = Hash[@all_ratings.map {|x| [x,1]}]
     @movies = Movie.order(@sort_column).where(rating: @ratings_checked.keys)
   end
 
