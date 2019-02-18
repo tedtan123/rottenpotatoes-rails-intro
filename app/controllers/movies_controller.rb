@@ -14,10 +14,10 @@ class MoviesController < ApplicationController
     #@movies = Movie.all
     
     @all_ratings = Movie.allRatings
-    
+    @ratings = params[:ratings]
     # Code below Feb 16
     @sort_column = params[:sort_by]
-    @movies = Movie.order(@sort_column).where(rating: @ratings)
+    
     #@movies = Movie.order(@sort_column).with_ratings
     if @sort_column == 'title'
       @title_header = 'hilite'
@@ -25,6 +25,8 @@ class MoviesController < ApplicationController
       @release_date_header = 'hilite'
     end
     # Code above Feb 16
+    @ratings = Hash[@all_ratings.map{|x| [x,1]}]
+    @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
   end
 
   def new
