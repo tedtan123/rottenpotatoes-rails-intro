@@ -43,7 +43,8 @@ class MoviesController < ApplicationController
       redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
     end
     #code above part 3
-    
+    @ratings = session[:ratings]
+    @sort_by = session[:sort_by]
     #code below part 2
     @ratings ||= Hash[@all_ratings.map {|x| [x,1]}]
     #code above part 2
