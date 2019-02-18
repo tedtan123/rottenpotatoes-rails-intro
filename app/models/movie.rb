@@ -4,8 +4,8 @@ class Movie < ActiveRecord::Base
        ['G','PG','PG-13','R']
    end
     
-#   def self.with_ratings
-#       self.where(rating: @ratings)
-#   end
+  def self.with_ratings
+      self.where(rating: @ratings.keys)
+  end
 # Code above Feb 16  
 end

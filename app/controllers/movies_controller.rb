@@ -24,7 +24,8 @@ class MoviesController < ApplicationController
     end
     # Code above Feb 16
     @ratings ||= Hash[@all_ratings.map {|x| [x,1]}]
-    @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
+    #@movies = Movie.order(@sort_column).where(rating: @ratings.keys)
+    @movies = Movie.order(@sort_column).with_ratings
   end
 
   def new
