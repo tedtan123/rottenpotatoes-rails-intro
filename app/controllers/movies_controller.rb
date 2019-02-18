@@ -42,13 +42,14 @@ class MoviesController < ApplicationController
       flash.keep
       redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
     end
-    #code above part 3
     @ratings = session[:ratings]
     @sort_by = session[:sort_by]
+    
     #code below part 2
-    @ratings ||= Hash[@all_ratings.map {|x| [x,1]}]
+    #@ratings ||= Hash[@all_ratings.map {|x| [x,1]}]
+    #@movies = Movie.order(@sort_column).where(rating: @ratings.keys)
     #code above part 2
-    @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
+    @movies = Movie.order(@sort_column).where(rating: @ratings)
     
   end
 
