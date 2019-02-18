@@ -45,7 +45,7 @@ class MoviesController < ApplicationController
     end
     @ratings = session[:ratings]
     @sort_column = session[:sort_by]
-    #code above part 3 only
+    #code above part 3 only 
     #code below part 2 only
     # if @ratings == nil
     #   @ratings = Hash[@all_ratings.map {|x| [x,1]}]
