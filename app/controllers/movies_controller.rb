@@ -50,7 +50,6 @@ class MoviesController < ApplicationController
     if @ratings == nil
       @ratings = Hash[@all_ratings.map {|x| [x,1]}]
     end
-    #code below part 2 only
     @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
     #code above part 2 only
     
