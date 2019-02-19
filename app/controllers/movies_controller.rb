@@ -12,12 +12,12 @@ class MoviesController < ApplicationController
 
   def index
     #code below part 1
-    #@movies = Movie.all
+    @movies = Movie.all
     #code above part 1
     
     #code below part 2 & 3
-    @all_ratings = Movie.allRatings
-    @ratings = params[:ratings]
+    # @all_ratings = Movie.allRatings
+    # @ratings = params[:ratings]
     #code above part 2 & 3
     
     @sort_column = params[:sort_by]
@@ -29,22 +29,22 @@ class MoviesController < ApplicationController
     # end
     
     #code below part 3 only 
-    if session[:ratings].nil?
-      session[:ratings] = @all_ratings
-    elsif session[:sort_by].nil?
-      session[:sort_by] = params[:sort_by]
-    end
+    # if session[:ratings].nil?
+    #   session[:ratings] = @all_ratings
+    # elsif session[:sort_by].nil?
+    #   session[:sort_by] = params[:sort_by]
+    # end
     
-    if params[:sort_by]
-      session[:sort_by] = params[:sort_by]
-    elsif params[:ratings]
-      session[:ratings] = params[:ratings].keys
-    elsif params[:sort_by].nil? or params[:ratings].nil?
-      flash.keep
-      redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
-    end
-    @ratings = session[:ratings]
-    @sort_column = session[:sort_by]
+    # if params[:sort_by]
+    #   session[:sort_by] = params[:sort_by]
+    # elsif params[:ratings]
+    #   session[:ratings] = params[:ratings].keys
+    # elsif params[:sort_by].nil? or params[:ratings].nil?
+    #   flash.keep
+    #   redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
+    # end
+    # @ratings = session[:ratings]
+    # @sort_column = session[:sort_by]
     #code above part 3 only 
     #code below part 2 only
     # if @ratings == nil
@@ -54,11 +54,11 @@ class MoviesController < ApplicationController
     #code above part 2 only
     
     #code below part 3
-    @movies = Movie.order(@sort_column).where(rating: @ratings)
+    # @movies = Movie.order(@sort_column).where(rating: @ratings)
     #code above part 3
     
     #code below part 1 only
-    #@movies = Movie.order(@sort_column)
+    @movies = Movie.order(@sort_column)
     #code above part 1 only
   end
 
@@ -89,6 +89,4 @@ class MoviesController < ApplicationController
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
-
-    
 end
