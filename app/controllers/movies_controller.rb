@@ -12,12 +12,12 @@ class MoviesController < ApplicationController
 
   def index
     #code below part 1
-    @movies = Movie.all
+    #@movies = Movie.all
     #code above part 1
     
     #code below part 2 & 3
-    # @all_ratings = Movie.allRatings
-    # @ratings = params[:ratings]
+    @all_ratings = Movie.allRatings
+    @ratings = params[:ratings]
     #code above part 2 & 3
     
     @sort_column = params[:sort_by]
@@ -47,10 +47,10 @@ class MoviesController < ApplicationController
     # @sort_column = session[:sort_by]
     #code above part 3 only 
     #code below part 2 only
-    # if @ratings == nil
-    #   @ratings = Hash[@all_ratings.map {|x| [x,1]}]
-    # end
-    # @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
+    if @ratings == nil
+      @ratings = Hash[@all_ratings.map {|x| [x,1]}]
+    end
+    @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
     #code above part 2 only
     
     #code below part 3
@@ -58,7 +58,7 @@ class MoviesController < ApplicationController
     #code above part 3
     
     #code below part 1 only
-    @movies = Movie.order(@sort_column)
+    #@movies = Movie.order(@sort_column)
     #code above part 1 only
   end
 
