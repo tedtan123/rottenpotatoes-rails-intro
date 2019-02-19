@@ -29,32 +29,32 @@ class MoviesController < ApplicationController
     # end
     
     #code below part 3 only 
-    # if session[:ratings].nil?
-    #   session[:ratings] = @all_ratings
-    # elsif session[:sort_by].nil?
-    #   session[:sort_by] = params[:sort_by]
-    # end
+    if session[:ratings].nil?
+      session[:ratings] = @all_ratings
+    elsif session[:sort_by].nil?
+      session[:sort_by] = params[:sort_by]
+    end
     
-    # if params[:sort_by]
-    #   session[:sort_by] = params[:sort_by]
-    # elsif params[:ratings]
-    #   session[:ratings] = params[:ratings].keys
-    # elsif params[:sort_by].nil? or params[:ratings].nil?
-    #   flash.keep
-    #   redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
-    # end
-    # @ratings = session[:ratings]
-    # @sort_column = session[:sort_by]
+    if params[:sort_by]
+      session[:sort_by] = params[:sort_by]
+    elsif params[:ratings]
+      session[:ratings] = params[:ratings].keys
+    elsif params[:sort_by].nil? or params[:ratings].nil?
+      flash.keep
+      redirect_to movies_path(:sort_by => @sort_column, :ratings => Hash[session[:ratings].map{|x| [x,1]}])
+    end
+    @ratings = session[:ratings]
+    @sort_column = session[:sort_by]
     #code above part 3 only 
     #code below part 2 only
-    if @ratings == nil
-      @ratings = Hash[@all_ratings.map {|x| [x,1]}]
-    end
-    @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
+    # if @ratings == nil
+    #   @ratings = Hash[@all_ratings.map {|x| [x,1]}]
+    # end
+    # @movies = Movie.order(@sort_column).where(rating: @ratings.keys)
     #code above part 2 only
     
     #code below part 3
-    # @movies = Movie.order(@sort_column).where(rating: @ratings)
+    @movies = Movie.order(@sort_column).where(rating: @ratings)
     #code above part 3
     
     #code below part 1 only
